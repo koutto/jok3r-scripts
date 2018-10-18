@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 sudo apt-get -y install libaio1 python-dev alien python-pip
 # sudo alien --to-deb oracle-instantclient*-basic-*.rpm
