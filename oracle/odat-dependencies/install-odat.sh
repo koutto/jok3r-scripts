@@ -3,6 +3,9 @@ sudo apt-get install libaio1 python-dev alien python-pip
 # sudo alien --to-deb oracle-instantclient*-basic-*.rpm
 # sudo alien --to-deb oracle-instantclient*-sqlplus-*.rpm
 # sudo alien --to-deb oracle-instantclient*-devel-*.rpm
+wget https://github.com/koutto/jok3r-scripts/blob/master/oracle/odat-dependencies/oracle-instantclient12.2-sqlplus_12.2.0.1.0-2_amd64.deb
+wget https://github.com/koutto/jok3r-scripts/blob/master/oracle/odat-dependencies/oracle-instantclient18.3-basic_18.3.0.0.0-2_amd64.deb
+wget https://github.com/koutto/jok3r-scripts/blob/master/oracle/odat-dependencies/oracle-instantclient18.3-devel_18.3.0.0.0-2_amd64.deb
 sudo dpkg -i oracle-instantclient18.3-basic_18.3.0.0.0-2_amd64.deb
 sudo dpkg -i oracle-instantclient12.2-sqlplus_12.2.0.1.0-2_amd64.deb
 sudo dpkg -i oracle-instantclient18.3-devel_18.3.0.0.0-2_amd64.deb
