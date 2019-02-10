@@ -13,11 +13,6 @@ print_info() {
         echo "${BOLD}${BLUE}[~] ${NORMAL}${BLUE}$1 ${NORMAL}"
 }
 
-print_delimiter() {
-    echo
-    echo "-------------------------------------------------------------------------------"
-    echo
-}
 
 EXPLOIT=$1
 IP=$2
