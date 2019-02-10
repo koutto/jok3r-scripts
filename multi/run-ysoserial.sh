@@ -1,5 +1,3 @@
-  GNU nano 3.1                                                                                                                    run-ysoserial.sh                                                                                                                              
-
 #!/usr/bin/env bash
 
 print_title() {
