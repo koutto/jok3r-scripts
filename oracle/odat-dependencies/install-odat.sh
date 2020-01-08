@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt-get -y install libaio1 python-dev alien python-pip
+sudo apt-get install -y libaio1 python3-dev alien python3-pip
 # sudo alien --to-deb oracle-instantclient*-basic-*.rpm
 # sudo alien --to-deb oracle-instantclient*-sqlplus-*.rpm
 # sudo alien --to-deb oracle-instantclient*-devel-*.rpm
@@ -18,9 +18,9 @@ sudo ln -s libclntsh.so.* libclntsh.so
 sudo sh -c "echo `file /usr/lib/oracle/*/client64/ | tail -n 1 | cut -d':' -f1` > /etc/ld.so.conf.d/oracle.conf"
 sudo ldconfig
 sudo -s source /etc/profile
-sudo pip2 install cx_Oracle
-python2.7 -c 'import cx_Oracle' 
-sudo apt-get install python-scapy
-sudo pip2 install colorlog termcolor pycrypto passlib
-sudo pip2 install argcomplete && sudo activate-global-python-argcomplete
-sudo pip2 install pyinstaller
+sudo pip3 install cx_Oracle
+python3 -c 'import cx_Oracle' 
+sudo apt-get install -y python3-scapy
+sudo pip3 install colorlog termcolor pycrypto passlib
+sudo pip3 install argcomplete && sudo activate-global-python-argcomplete
+sudo pip3 install pyinstaller
